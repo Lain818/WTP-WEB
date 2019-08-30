@@ -1,25 +1,12 @@
--- video explanation is HERE: https://www.youtube.com/watch?v=Arn8ExQ2Gjg
--- note that some of the code has changed since then (it works better now!)
--- Though, I have since abandoned luamacros, in favor of Interception... which i will abandon in favor of QMK.
--- get luamacros HERE: http://www.hidmacros.eu/forum/viewtopic.php?f=10&t=241#p794
--- plug in your 2nd keyboard, load this script into LUAmacros, and press the triangle PLAY button.
--- Then, press any key on that keyboard to assign logical name ('MACROS') to macro keyboard
 clear() --clear the console from last run
 local keyboardIdentifier = '13DD145D'
 lmc_print_devices()
 
-
---You need to get the identifier code for the keyboard with name "MACROS"
---This appears about halfway through the SystemID item and looks like 1BB382AF or some other alphanumeric combo. 
--- It's usually 7 or 8 characters long.
---Once you have this identifier, replace the value of keyboardIdentifier with it
-
---Don't ask for keyboard assignment help if the user has manually entered a keyboard identifier
 if keyboardIdentifier == '0000AAA' then
 	lmc_assign_keyboard('MACROS');
 else lmc_device_set_name('MACROS', keyboardIdentifier);
 end
---This lists connected keyboards
+
 dev = lmc_get_devices()
 for key,value in pairs(dev) do
   print(key..':')
@@ -27,7 +14,7 @@ for key,value in pairs(dev) do
 end   
 print('You need to get the identifier code for the keyboard with name "MACROS"')
 print('Then replace the first 0000AAA value in the code with it. This will prevent having to manually identify keyboard every time.')
--- Hide window to tray to keep taskbar tidy  
+ 
 lmc.minimizeToTray = true
 lmc_minimize()
 
